@@ -9,10 +9,6 @@ scalaVersion := "2.10.3"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
-resolvers ++= Seq(
-  "spray repo" at "http://repo.spray.io/"
-)
-
 jacoco.settings
 
 libraryDependencies ++= {
