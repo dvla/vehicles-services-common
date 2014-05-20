@@ -1,8 +1,8 @@
-package dvla.common.validation
+package dvla.common.domain.vehicle_lookup
 
 import org.scalatest.{Matchers, WordSpec}
 
-class VrnValidatorSpec extends WordSpec with Matchers {
+class VehicleRegistrationMarkSpec extends WordSpec with Matchers {
 
   /**
    * Vehicle registration mark tests invalid vrms
@@ -24,7 +24,7 @@ class VrnValidatorSpec extends WordSpec with Matchers {
     "A9A99", "AAAA9", "A9AA9A9", "9AA999A", "9AA9999", "9AAA9A", "9AAA9A9", "A99AAAA", "9A99A9A", "A9AA9", "9A9AAAA", "AAAAA9A", "AAA99AA", "AAAAAAA", "9A999",
     "", "ab53ab%")
   allInvalidVrmFormats.map(vrm => "indicate the vrm is invalid: " + vrm in {
-    val valid = VrnValidator.validate(vrm)
+    val valid = VehicleRegistrationMark.validate(vrm)
     valid should equal(false)
   })
 
@@ -34,7 +34,7 @@ class VrnValidatorSpec extends WordSpec with Matchers {
   val allValidVrmFormats = Seq("A9", "A99", "A999", "A9999", "AA9", "AA99", "AA999", "AA9999", "AAA9", "AAA99", "AAA999", "AAA9999", "AAA9A", "AAA99A",
     "AAA999A", "9A", "9AA", "9AAA", "99A", "99AA", "99AAA", "999A", "999AA", "999AAA", "9999A", "9999AA", "A9AAA", "A99AAA", "A999AAA", "AA99AAA", "9999AAA")
   allValidVrmFormats.map(vrm => "indicate the vrm is valid: " + vrm in {
-    val valid = VrnValidator.validate(vrm)
+    val valid = VehicleRegistrationMark.validate(vrm)
     valid should equal(true)
   })
 
