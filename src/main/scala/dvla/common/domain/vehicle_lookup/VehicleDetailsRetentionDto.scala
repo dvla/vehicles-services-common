@@ -4,5 +4,4 @@ case class VehicleDetailsRetentionDto(registrationNumber: String,
                                       vehicleMake: String,
                                       vehicleModel: String,
                                       exportMarker: Boolean,
-                                      vehicleInspectionMarker: Boolean,
-                                      disposalIndicator: Boolean)
+                                      scrappedMarker: Boolean)

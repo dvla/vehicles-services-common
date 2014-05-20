@@ -6,7 +6,7 @@ import spray.httpx.SprayJsonSupport
 object JsonFormats extends DefaultJsonProtocol with SprayJsonSupport {
 
   implicit val vehicleDetailsDisposeDtoFormat = jsonFormat3(VehicleDetailsDisposeDto)
-  implicit val vehicleDetailsRetentionDtoFormat = jsonFormat6(VehicleDetailsRetentionDto)
+  implicit val vehicleDetailsRetentionDtoFormat = jsonFormat5(VehicleDetailsRetentionDto)
 
   implicit val vehicleLookupRequestFormat = jsonFormat2(VehicleLookupRequest)
 
