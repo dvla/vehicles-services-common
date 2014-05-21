@@ -18,7 +18,7 @@ object VehicleRegistrationMark {
     WhitelistRegexFormula.stripMargin.replace("\n", "").r
 
   def apply(value: String): VehicleRegistrationMark = {
-    require(value.length >= 2 && value.length <= 8, "VRM field must be between 2 and 8 characters")
+    require(value.length >= 2 && value.length <= 8, "VRM must be between 2 and 8 characters")
     require(validate(value), "VRM must match valid format")
     new VehicleRegistrationMark(value)
   }
