@@ -9,11 +9,12 @@ import dvla.common.microservice.HttpHeaders.{`X-Real-Ip`, `Tracking-Id`}
 import java.text.SimpleDateFormat
 import java.util.Date
 
+object RequestResponseLogging {
+  val dateFormat = new SimpleDateFormat("dd/MMM/yyyy:hh:mm:ss +SSS")
+}
 
 trait RequestResponseLogging {
-  object RequestResponseLogging {
-    val dateFormat = new SimpleDateFormat("dd/MMM/yyyy:hh:mm:ss +SSS")
-  }
+
 
   import RequestResponseLogging._
 
@@ -42,5 +43,5 @@ trait RequestResponseLogging {
 }
 
 trait ActorRequestLogging extends RequestResponseLogging { this: Actor =>
-  val requestLogger = akka.event.Logging(context.system, this)
+  val requestLogger = akka.event.Logging(context.system, RequestResponseLogging.getClass)
 }
