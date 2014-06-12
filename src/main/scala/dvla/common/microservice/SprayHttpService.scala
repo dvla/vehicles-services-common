@@ -15,7 +15,7 @@ import spray.http._
  * SprayHttpService trait is designed to be mixed in with service implementations. It hides away the boilerplate
  * code used to turn a unit-testable HttpService into an actual runnable service and provides utility functionality
  */
-trait SprayHttpService extends Actor with ActorLogging {
+trait SprayHttpService extends Actor with ActorLogging with ActorRequestLogging {
   self: HttpService =>
 
   // we use the enclosing ActorContext's or ActorSystem's dispatcher for our Futures and Scheduler
