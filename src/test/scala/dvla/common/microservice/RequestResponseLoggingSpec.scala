@@ -65,16 +65,16 @@ class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with M
       )
     }
 
-//    "Rejected request" should {
-//      "be logged" in withTestServiceWithRejection { testService =>
-//        doTest(
-//          testService,
-//          Some(`Remote-Address`("127.0.0.1")),
-//          Some(`Tracking-Id`("some tracking id")),
-//          Some(`X-Real-Ip`("124.1.1.1"))
-//        )
-//      }
-//    }
+    "Rejected request" should {
+      "be logged" in withTestServiceWithRejection { testService =>
+        doTest(
+          testService,
+          Some(`Remote-Address`("127.0.0.1")),
+          Some(`Tracking-Id`("some tracking id")),
+          Some(`X-Real-Ip`("124.1.1.1"))
+        )
+      }
+    }
   }
 
   private def doTest(testService: TestService, ip:Option[HttpHeader], trackingId: Option[HttpHeader], extra: Option[HttpHeader] *): Unit = {
