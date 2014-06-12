@@ -8,6 +8,7 @@ import spray.http.HttpHeaders.{`X-Forwarded-For`, `Remote-Address`}
 import dvla.common.microservice.HttpHeaders.{`X-Real-Ip`, `Tracking-Id`}
 import java.text.SimpleDateFormat
 import java.util.Date
+import spray.routing.Rejected
 
 object RequestResponseLogging {
   val dateFormat = new SimpleDateFormat("dd/MMM/yyyy:hh:mm:ss +SSS")
@@ -36,6 +37,7 @@ trait RequestResponseLogging {
       val date = s"[${dateFormat.format(new Date())}]"
       val (responseCode, responseLength) = response match {
         case r: HttpResponse => (r.status.intValue, r.entity.data.length)
+        case r: Rejected => (500, 0)
       }
       requestLogger.info(s"""$ipAddress - - $date "$method $uri $protocol" $responseCode $responseLength "$trackingId"""")
     }

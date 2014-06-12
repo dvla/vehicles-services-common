@@ -17,7 +17,7 @@ class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with M
   def actorRefFactory = system
   final val responseBody = "the response body"
    
-  "Incoming Request" should {
+  "Incoming Successful Request" should {
 
     "Get is logged along with the response" in withTestService { testService =>
       doTest(testService, Some(`Remote-Address`("127.0.0.1")), Some(`Tracking-Id`("some tracking id")))
@@ -64,6 +64,17 @@ class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with M
         None
       )
     }
+
+//    "Rejected request" should {
+//      "be logged" in withTestServiceWithRejection { testService =>
+//        doTest(
+//          testService,
+//          Some(`Remote-Address`("127.0.0.1")),
+//          Some(`Tracking-Id`("some tracking id")),
+//          Some(`X-Real-Ip`("124.1.1.1"))
+//        )
+//      }
+//    }
   }
 
   private def doTest(testService: TestService, ip:Option[HttpHeader], trackingId: Option[HttpHeader], extra: Option[HttpHeader] *): Unit = {
@@ -93,9 +104,19 @@ class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with M
     test(new TestService(mock[LoggingAdapter]))
   }
 
-  private class TestService(override val requestLogger: LoggingAdapter ) extends RequestResponseLogging {
+  private def withTestServiceWithRejection(test: TestServiceFailing => Unit) {
+    test(new TestServiceFailing(mock[LoggingAdapter]))
+  }
+
+  private class TestService(override val requestLogger: LoggingAdapter) extends RequestResponseLogging {
     val route = requestResponseLogging {
       complete(responseBody)
+    }
+  }
+
+  private class TestServiceFailing(override val requestLogger: LoggingAdapter) extends TestService(requestLogger) {
+    override val route = requestResponseLogging {
+      reject
     }
   }
 }
