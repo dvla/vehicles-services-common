@@ -23,12 +23,9 @@ trait AccessLogging extends ExecutionDirectives {
 
   private val accessLogging = DebuggingDirectives.logRequestResponse(LoggingMagnet (
     (request: HttpRequest) => (response: Any) => {
-      val ipAddress = request.headers.find(_.is(`X-Forwarded-For`.name.toLowerCase)).fold {
-        request.headers.find(_.is(`Remote-Address`.name.toLowerCase)).fold {
-          request.headers.find(_.is(`X-Real-Ip`.name.toLowerCase)).fold("-")(_.value)
-        } (_.value)
-      } (_.value)
-
+      val ipAddress = request.headers.find(_.is(`X-Forwarded-For`.name.toLowerCase)) orElse
+        request.headers.find(_.is(`Remote-Address`.name.toLowerCase)) orElse
+          request.headers.find(_.is(`X-Real-Ip`.name.toLowerCase))
 
       val trackingId = request.headers.find(_.is(`Tracking-Id`.name.toLowerCase)).map(_.value).getOrElse("-")
       val method = request.method
@@ -39,7 +36,7 @@ trait AccessLogging extends ExecutionDirectives {
         case r: HttpResponse => (r.status.intValue, r.entity.data.length)
         case r: Rejected => (404, 0) // This should never happen as we should handle the Rejections before this directive
       }
-      accessLogger.info(s"""$ipAddress - - $date "$method $uri $protocol" $responseCode $responseLength "$trackingId"""")
+      accessLogger.info(s"""${ipAddress.fold("-")(_.value)} - - $date "$method $uri $protocol" $responseCode $responseLength "$trackingId"""")
      }
   ))
 
