@@ -3,7 +3,6 @@ package dvla.common.domain.vehicle_lookup
 import org.scalatest.{Matchers, WordSpec}
 import dvla.common.domain.vehicle_lookup.JsonFormats._
 import spray.json._
-import dvla.common.domain.vehicle_lookup.{VehicleRegistrationMark, DocumentReferenceNumber, VehicleLookupRequest}
 
 class JsonFormatsSpec extends WordSpec with Matchers {
 
