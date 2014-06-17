@@ -11,8 +11,8 @@ class JsonFormatsSpec extends WordSpec with Matchers {
 
     "successfully unmarshall a valid json vehicle lookup request payload into a request object" in {
 
-      val expectedRequest = VehicleLookupRequest(DocumentReferenceNumber("12345678901"), VehicleRegistrationMark("WV54XKW"), "testTrackingId", "testTraderName")
-      val jsonPayload = """{"referenceNumber":"12345678901","registrationNumber":"WV54XKW","trackingId":"testTrackingId", "userName":"testTraderName"}"""
+      val expectedRequest = VehicleLookupRequest(DocumentReferenceNumber("12345678901"), VehicleRegistrationMark("WV54XKW"), "testTraderName")
+      val jsonPayload = """{"referenceNumber":"12345678901","registrationNumber":"WV54XKW","userName":"testTraderName"}"""
       val unmarshalledRequest = jsonPayload.asJson.convertTo[VehicleLookupRequest]
       unmarshalledRequest should equal(expectedRequest)
     }
