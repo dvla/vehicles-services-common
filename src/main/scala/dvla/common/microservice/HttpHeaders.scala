@@ -10,6 +10,8 @@ class HeaderObject {
 }
 
 object HttpHeaders {
+  final val TrackingIdHeader = "Tracking-Id"
+
   object `Tracking-Id` extends HeaderObject {
     def apply(value: String) = RawHeader(name, value)
   }
