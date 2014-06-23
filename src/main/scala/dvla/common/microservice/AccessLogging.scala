@@ -1,22 +1,17 @@
 package dvla.common.microservice
 
-import akka.event.LoggingAdapter
+import AccessLogging._
 import akka.actor.{ActorContext, Actor}
-import spray.routing.directives.{ExecutionDirectives, LoggingMagnet, DebuggingDirectives}
-import spray.http.HttpHeaders.{`X-Forwarded-For`, `Remote-Address`}
+import akka.event.LoggingAdapter
 import dvla.common.microservice.HttpHeaders.{`X-Real-Ip`, `Tracking-Id`}
 import java.text.SimpleDateFormat
 import java.util.Date
-import spray.routing._
-import AccessLogging._
+import spray.http.HttpHeaders.{`X-Forwarded-For`, `Remote-Address`}
 import spray.http.HttpRequest
 import spray.http.HttpResponse
-import spray.routing.Rejected
+import spray.routing._
+import spray.routing.directives.{ExecutionDirectives, LoggingMagnet, DebuggingDirectives}
 import spray.util.LoggingContext
-
-object AccessLogging {
-  val dateFormat = new SimpleDateFormat("dd/MMM/yyyy:hh:mm:ss +SSS")
-}
 
 trait AccessLogging extends ExecutionDirectives {
   val accessLogger: LoggingAdapter
@@ -36,13 +31,18 @@ trait AccessLogging extends ExecutionDirectives {
         case r: HttpResponse => (r.status.intValue, r.entity.data.length)
         case r: Rejected => (404, 0) // This should never happen as we should handle the Rejections before this directive
       }
-      accessLogger.info(s"""${ipAddress.fold("-")(_.value)} - - $date "$method $uri $protocol" $responseCode $responseLength "$trackingId"""")
+
+      val formattedIp = ipAddress.fold("-")(_.value)
+      accessLogger.info(s"""$formattedIp - - $date "$method $uri $protocol" $responseCode $responseLength "$trackingId"""")
      }
   ))
 
   protected def withAccessLogging(inner: Route)
-                                (implicit eh: ExceptionHandler, rh: RejectionHandler, ac: ActorContext,
-                                               rs: RoutingSettings, log: LoggingContext) = {
+                                (implicit eh: ExceptionHandler,
+                                 rh: RejectionHandler,
+                                 ac: ActorContext,
+                                 rs: RoutingSettings,
+                                 log: LoggingContext) =
     accessLogging {
       handleExceptions(eh) {
         handleRejections(rh) {
@@ -50,9 +50,12 @@ trait AccessLogging extends ExecutionDirectives {
         }
       }
     }
-  }
 }
 
 trait ActorAccessLogger extends AccessLogging { this: Actor =>
   val accessLogger = akka.event.Logging(context.system, AccessLogging.getClass)
+}
+
+object AccessLogging {
+  val dateFormat = new SimpleDateFormat("dd/MMM/yyyy:hh:mm:ss +SSS")
 }
