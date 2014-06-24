@@ -10,9 +10,9 @@ object JsonFormats extends DefaultJsonProtocol with SprayJsonSupport {
   implicit val documentReferenceNumberFormat = new StringValueClassJsonFormat[DocumentReferenceNumber](_.value, DocumentReferenceNumber(_))
 
   implicit val vehicleDetailsDisposeDtoFormat = jsonFormat3(VehicleDetailsDisposeDto)
-  implicit val vehicleDetailsRetentionDtoFormat = jsonFormat5(VehicleDetailsRetentionDto)
+  implicit val vehicleDetailsRetentionDtoFormat = jsonFormat3(VehicleDetailsRetentionDto)
 
-  implicit val vehicleLookupRequestFormat = jsonFormat4(VehicleLookupRequest)
+  implicit val vehicleLookupRequestFormat = jsonFormat3(VehicleLookupRequest)
 
   implicit val vehicleLookupDisposeResponseFormat = jsonFormat2(VehicleLookupDisposeResponse)
   implicit val vehicleLookupRetentionResponseFormat = jsonFormat2(VehicleLookupRetentionResponse)

@@ -44,4 +44,5 @@ vagrant_ansible_inventory_default
 vehiclesServices.conf
 .vagrant/
 workdir
-
+*.swp
+tags
