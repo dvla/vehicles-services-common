@@ -2,7 +2,7 @@ package dvla.common.microservice
 
 import spray.http.HttpHeaders.RawHeader
 
-class HeaderObject {
+trait HeaderObject {
   val name = {
     val n = getClass.getName
     n.substring(n.indexOf('$') + 1, n.length - 1).replace("$minus", "-")

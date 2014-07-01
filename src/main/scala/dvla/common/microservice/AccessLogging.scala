@@ -1,16 +1,16 @@
 package dvla.common.microservice
 
-import AccessLogging._
-import akka.actor.{ActorContext, Actor}
-import akka.event.LoggingAdapter
-import dvla.common.microservice.HttpHeaders.{`X-Real-Ip`, `Tracking-Id`}
 import java.text.SimpleDateFormat
 import java.util.Date
-import spray.http.HttpHeaders.{`X-Forwarded-For`, `Remote-Address`}
-import spray.http.HttpRequest
-import spray.http.HttpResponse
-import spray.routing._
-import spray.routing.directives.{ExecutionDirectives, LoggingMagnet, DebuggingDirectives}
+
+import akka.actor.{Actor, ActorContext}
+import akka.event.LoggingAdapter
+import dvla.common.microservice.AccessLogging.dateFormat
+import dvla.common.microservice.HttpHeaders.{`Tracking-Id`, `X-Real-Ip`}
+import spray.http.HttpHeaders.{`Remote-Address`, `X-Forwarded-For`}
+import spray.http.{HttpRequest, HttpResponse}
+import spray.routing.directives.{DebuggingDirectives, ExecutionDirectives, LoggingMagnet}
+import spray.routing.{ExceptionHandler, Rejected, RejectionHandler, Route, RoutingSettings}
 import spray.util.LoggingContext
 
 trait AccessLogging extends ExecutionDirectives {

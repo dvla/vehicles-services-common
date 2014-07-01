@@ -5,9 +5,11 @@ import spray.httpx.SprayJsonSupport
 import dvla.common.serialization.StringValueClassJsonFormat
 
 object JsonFormats extends DefaultJsonProtocol with SprayJsonSupport {
+  type VRMFormat = StringValueClassJsonFormat[VehicleRegistrationMark]
+  type DocRefFormat = StringValueClassJsonFormat[DocumentReferenceNumber]
 
-  implicit val vehicleRegistrationMarkFormat = new StringValueClassJsonFormat[VehicleRegistrationMark](_.value, VehicleRegistrationMark(_))
-  implicit val documentReferenceNumberFormat = new StringValueClassJsonFormat[DocumentReferenceNumber](_.value, DocumentReferenceNumber(_))
+  implicit val vehicleRegistrationMarkFormat = new VRMFormat(_.value, VehicleRegistrationMark(_))
+  implicit val documentReferenceNumberFormat = new DocRefFormat(_.value, DocumentReferenceNumber(_))
 
   implicit val vehicleDetailsDisposeDtoFormat = jsonFormat3(VehicleDetailsDisposeDto)
   implicit val vehicleDetailsRetentionDtoFormat = jsonFormat3(VehicleDetailsRetentionDto)

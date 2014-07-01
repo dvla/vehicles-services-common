@@ -1,14 +1,13 @@
 package dvla.common.microservice
 
-import akka.actor._
+import akka.actor.{Actor, ActorLogging}
 import akka.pattern.ask
-import spray.can.server.Stats
-import scala.concurrent.duration._
-import spray.routing._
-import spray.util._
+import scala.concurrent.duration.DurationInt
+import spray.routing.HttpService
+import spray.util.pimpDuration
 import spray.can.Http
 import spray.httpx.marshalling.Marshaller
-import spray.http._
+import spray.http.ContentTypes
 import spray.routing.RequestContext
 import spray.can.server.Stats
 
@@ -44,7 +43,7 @@ trait SprayHttpService extends AccessLogging with Actor with ActorLogging with A
 
   implicit val statsMarshaller: Marshaller[Stats] =
     Marshaller.delegate[Stats, String](ContentTypes.`text/plain`) { stats =>
-      "Uptime                : " + stats.uptime.formatHMS + '\n' +
+        "Uptime                : " + stats.uptime.formatHMS + '\n' +
         "Total requests        : " + stats.totalRequests + '\n' +
         "Open requests         : " + stats.openRequests + '\n' +
         "Max open requests     : " + stats.maxOpenRequests + '\n' +
