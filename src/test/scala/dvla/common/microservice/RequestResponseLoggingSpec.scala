@@ -1,9 +1,9 @@
 package dvla.common.microservice
 
 import akka.event.LoggingAdapter
-import org.scalatest.mock.MockitoSugar._
+import org.scalatest.mock.MockitoSugar.mock
 import org.scalatest.{Matchers, WordSpec}
-import spray.routing._
+import spray.routing.{HttpService, ExceptionHandler, RejectionHandler, Rejection, RoutingSettings}
 import spray.testkit.ScalatestRouteTest
 import org.mockito.Mockito.{verify, verifyNoMoreInteractions}
 import org.mockito.ArgumentCaptor
@@ -167,4 +167,3 @@ class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with M
     }
   }
 }
-

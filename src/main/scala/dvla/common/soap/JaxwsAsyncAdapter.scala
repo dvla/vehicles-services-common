@@ -15,5 +15,4 @@ object JaxwsAsyncAdapter {
     invoker(handler)
     promise.future
   }
-
 }

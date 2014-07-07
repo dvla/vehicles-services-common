@@ -1,8 +1,8 @@
 package dvla.common.domain.vehicle_lookup
 
-import spray.json._
-import spray.httpx.SprayJsonSupport
 import dvla.common.serialization.StringValueClassJsonFormat
+import spray.httpx.SprayJsonSupport
+import spray.json.DefaultJsonProtocol
 
 object JsonFormats extends DefaultJsonProtocol with SprayJsonSupport {
   type VRMFormat = StringValueClassJsonFormat[VehicleRegistrationMark]
@@ -18,5 +18,4 @@ object JsonFormats extends DefaultJsonProtocol with SprayJsonSupport {
 
   implicit val vehicleLookupDisposeResponseFormat = jsonFormat2(VehicleLookupDisposeResponse)
   implicit val vehicleLookupRetentionResponseFormat = jsonFormat2(VehicleLookupRetentionResponse)
-
 }
