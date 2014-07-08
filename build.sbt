@@ -3,7 +3,7 @@ import JacocoPlugin._
 
 organization := "dvla"
 
-version := "0.1-SNAPSHOT"
+version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.10.3"
 
@@ -12,8 +12,8 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 jacoco.settings
 
 libraryDependencies ++= {
-  val akkaV = "2.2.3"
-  val sprayV = "1.2.0"
+  val akkaV = "2.3.3"
+  val sprayV = "1.3.1"
   Seq(
     "io.spray" % "spray-can" % sprayV,
     "io.spray" % "spray-caching" % sprayV,
