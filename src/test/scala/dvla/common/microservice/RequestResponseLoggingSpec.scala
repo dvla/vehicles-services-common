@@ -115,7 +115,7 @@ class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with M
                      errorCode:Int,
                      bodyLength: Int,
                      extra: Option[HttpHeader] *): Unit = {
-    val uri: String = "https://qa-vehicles-online.preview-dvla.co.uk/assets/javascripts-min/custom.js"
+    val uri: String = "http://localhost/assets/javascripts-min/custom.js"
     val method = Get(uri, "random content").
       withHeaders((Seq(ip, trackingId) ++ extra ).flatten: _*)
     method ~> testService.route ~> check {
