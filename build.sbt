@@ -3,7 +3,7 @@ import JacocoPlugin._
 
 organization := "dvla"
 
-version := "0.2-SNAPSHOT"
+version := "0.3-SNAPSHOT"
 
 scalaVersion := "2.10.3"
 
