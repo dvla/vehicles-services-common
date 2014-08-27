@@ -13,9 +13,11 @@ object JsonFormats extends DefaultJsonProtocol with SprayJsonSupport {
 
   implicit val vehicleDetailsDisposeDtoFormat = jsonFormat3(VehicleDetailsDisposeDto)
   implicit val vehicleDetailsRetentionDtoFormat = jsonFormat3(VehicleDetailsRetentionDto)
+  implicit val vehicleDetailsAcquireDtoFormat = jsonFormat4(VehicleDetailsAcquireDto)
 
   implicit val vehicleLookupRequestFormat = jsonFormat3(VehicleLookupRequest)
 
   implicit val vehicleLookupDisposeResponseFormat = jsonFormat2(VehicleLookupDisposeResponse)
   implicit val vehicleLookupRetentionResponseFormat = jsonFormat2(VehicleLookupRetentionResponse)
+  implicit val vehicleLookupAcquireResponseFormat = jsonFormat2(VehicleLookupAcquireResponse)
 }
