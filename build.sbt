@@ -1,6 +1,8 @@
 import de.johoop.jacoco4sbt._
 import JacocoPlugin._
 
+name := "vehicles-services-common"
+
 organization := "dvla"
 
 version := "0.3-SNAPSHOT"
