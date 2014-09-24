@@ -34,6 +34,9 @@ libraryDependencies ++= {
 // ------ Start: settings to allow us to publish the binary to nexus internal repository
 credentials += Credentials(Path.userHome / ".sbt/.credentials")
 
+// Enable microservices project to use the test classes from the common
+publishArtifact in (Test, packageBin) := true
+
 publishTo <<= version { v: String =>
   val nexusHost = "http://rep002-01.skyscape.preview-dvla.co.uk:8081/nexus/"
   if (v.trim.endsWith("SNAPSHOT"))
