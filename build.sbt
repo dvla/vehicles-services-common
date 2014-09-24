@@ -27,7 +27,8 @@ libraryDependencies ++= {
     "ch.qos.logback" % "logback-classic" % "1.1.0",
     "org.scalatest" % "scalatest_2.10" % "2.0" % "test",
     "org.mockito" % "mockito-all" % "1.9.5" % "test",
-    "com.github.nscala-time" %% "nscala-time" % "0.8.0"
+    "com.github.nscala-time" %% "nscala-time" % "0.8.0",
+    "com.github.tomakehurst" % "wiremock" % "1.48" % "test"
   )
 }
 
