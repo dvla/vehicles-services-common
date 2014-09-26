@@ -7,6 +7,8 @@ organization := "dvla"
 
 version := "0.4"
 
+licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
+
 scalaVersion := "2.10.3"
 
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
