@@ -5,7 +5,7 @@ name := "vehicles-services-common"
 
 organization := "dvla"
 
-version := "0.4"
+version := "0.5-SNAPSHOT"
 
 scalaVersion := "2.10.3"
 
