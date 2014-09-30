@@ -13,4 +13,5 @@ env:
   - secure: oeTU4j2j46Lx/tfKiSnYpRKBA2lF0JSDP8lIXdLBKqCqiq0eWwfEmRqak3bKTCfeJpsRixDoq4ld1jp3tKmlLXojKARsEyUT/7uXpfE2ttV8+kNqrfs53mCXIK1WffHuVCWQLr4R64lOxIs5JEOtnvheCAFeU9Qmruve0TRrIec=
 after_success:
   - >
-    sbt bintrayCredentials publish
+    sbt bintrayCredentials && sbt publish
+
