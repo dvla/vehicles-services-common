@@ -1,13 +1,16 @@
 language: scala
- 
 scala:
-  - 2.10.4
-
+- 2.10.4
 jdk:
-  - oraclejdk7
-
+- oraclejdk7
 matrix:
   fast_finish: true
-
 notifications:
   email: false
+env:
+  global:
+  - secure: MXDmyePD2PJ13BFe/N0F7JuTMn2OOQxStKw7n56bAYjjeCMnn5bbxWh64UNTzHvujgKeLwAkxoZTrD8tq8jX1sGQUor9YEdP3tP4GqLlNbpBwN+aZ2BsDWYuZ0A+JHOLUy+e5i16Esa4YKVKpi5i3FZTGcB7bBUPveo40zAagVc=
+  - secure: oeTU4j2j46Lx/tfKiSnYpRKBA2lF0JSDP8lIXdLBKqCqiq0eWwfEmRqak3bKTCfeJpsRixDoq4ld1jp3tKmlLXojKARsEyUT/7uXpfE2ttV8+kNqrfs53mCXIK1WffHuVCWQLr4R64lOxIs5JEOtnvheCAFeU9Qmruve0TRrIec=
+after_success:
+  - >
+    sbt bintrayCredentials publish
