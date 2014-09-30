@@ -15,12 +15,15 @@ object BintrayCredentials {
       .orElse(throw new Exception("BINTRAY_API_KEY system property or environment variable not set"))
       .get
     val credentialsFile = new File(sys.props.get("user.home").get + "/.bintray/.credentials")
+    println(s"Writing the bintray credentials file to ${credentialsFile.getAbsolutePath}")
     IO.write(
       credentialsFile,
-      s"""realm=Bintray API Realm
-        |host=api.bintray.com
+      s"""realm=Bintray Public Repo
+        |host=bintray.com
         |user=$bintrayUser
-        |password=$bintrayApiKey""".stripMargin
+        |password=$bintrayApiKey
+        |
+        |""".stripMargin
     )
   }
 }
