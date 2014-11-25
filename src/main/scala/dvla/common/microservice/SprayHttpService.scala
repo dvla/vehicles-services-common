@@ -11,11 +11,13 @@ import spray.http.ContentTypes
 import spray.routing.RequestContext
 import spray.can.server.Stats
 
+import scala.io.Source.fromInputStream
+
 /**
  * SprayHttpService trait is designed to be mixed in with service implementations. It hides away the boilerplate
  * code used to turn a unit-testable HttpService into an actual runnable service and provides utility functionality
  */
-trait SprayHttpService extends AccessLogging with Actor with ActorLogging with ActorAccessLogger {
+trait SprayHttpService extends AccessLogging with Version with Actor with ActorLogging with ActorAccessLogger {
   self: HttpService =>
 
   // we use the enclosing ActorContext's or ActorSystem's dispatcher for our Futures and Scheduler
@@ -28,6 +30,9 @@ trait SprayHttpService extends AccessLogging with Actor with ActorLogging with A
   def receive = runRoute(
     withAccessLogging {
       route ~ get {
+        path("version") {
+          complete(version)
+        } ~
         path("stats") {
           complete {
             actorRefFactory.actorSelection("/user/IO-HTTP/listener-0")
@@ -52,4 +57,5 @@ trait SprayHttpService extends AccessLogging with Actor with ActorLogging with A
         "Max open connections  : " + stats.maxOpenConnections + '\n' +
         "Requests timed out    : " + stats.requestTimeouts + '\n'
     }
+
 }
