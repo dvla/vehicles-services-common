@@ -5,7 +5,7 @@ name := "vehicles-services-common"
 
 organization := "dvla"
 
-version := "0.8"
+version := "0.9-SNAPSHOT"
 
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
