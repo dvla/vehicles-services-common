@@ -2,17 +2,11 @@ import de.johoop.jacoco4sbt._
 import JacocoPlugin._
 
 name := "vehicles-services-common"
-
 organization := "dvla"
-
 version := "0.10-SNAPSHOT"
-
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-
 scalaVersion := "2.10.4"
-
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
-
 jacoco.settings
 
 libraryDependencies ++= {
