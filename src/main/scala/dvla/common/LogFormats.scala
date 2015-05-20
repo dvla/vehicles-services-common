@@ -1,4 +1,4 @@
-package uk.gov.dvla.vehicles.presentation.common
+package dvla.common
 
 object LogFormats {
 
@@ -22,6 +22,7 @@ object LogFormats {
 
   def anonymize(input: Option[_]): String = {
     input match {
+      case null => nullString
       case Some(i) => anonymize(i.toString)
       case None => nullString
     }
