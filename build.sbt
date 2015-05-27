@@ -5,7 +5,7 @@ name := "vehicles-services-common"
 organization := "dvla"
 version := "0.11-SNAPSHOT"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-scalaVersion := "2.10.4"
+scalaVersion := "2.10.5"
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 jacoco.settings
 
