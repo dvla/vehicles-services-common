@@ -44,7 +44,7 @@ publishTo <<= version { v: String =>
 // ------ End: settings to allow us to publish the binary to nexus internal repository
 
 // Uncomment next line when released and before publishing to github. NOTE: bintray plugin doesn't work with SNAPSHOTS
-//bintrayPublishSettings
+bintrayPublishSettings
 
 BintrayCredentials.bintrayCredentialsTask
 
