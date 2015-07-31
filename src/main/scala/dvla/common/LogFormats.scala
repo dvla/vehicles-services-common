@@ -1,5 +1,7 @@
 package dvla.common
 
+import dvla.common.clientsidesession.TrackingId
+
 object LogFormats {
 
   private final val anonymousChar = "*"
@@ -28,10 +30,14 @@ object LogFormats {
     }
   }
 
-  def logMessage(messageText: String, trackingId: String, logData: Seq[String]): String =
-    messageText + logSeperator + logData + "trackingId: " + trackingId
+  // When changes these two logMessage methods, be sure to replicate the changes in
+  //    vehicles-presentation-common/app/uk/.../common/LogFormats.scala
+  // in order to keep a consistent log format
+  def logMessage(messageText: String, trackingId: TrackingId, logData: Seq[String]): String =
+    messageText + logSeperator + logData + "trackingId: " + trackingId.value
 
-  def logMessage(messageText: String, trackingId: String): String =
-    messageText + logSeperator + "trackingId: " + trackingId
+  def logMessage(messageText: String, trackingId: TrackingId): String =
+    messageText + logSeperator + "trackingId: " + trackingId.value
+
 
 }
