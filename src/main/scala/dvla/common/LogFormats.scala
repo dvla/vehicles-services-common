@@ -1,5 +1,6 @@
 package dvla.common
 
+import akka.event.LoggingAdapter
 import dvla.common.clientsidesession.TrackingId
 
 object LogFormats {
@@ -33,11 +34,26 @@ object LogFormats {
   // When changes these two logMessage methods, be sure to replicate the changes in
   //    vehicles-presentation-common/app/uk/.../common/LogFormats.scala
   // in order to keep a consistent log format
-  def logMessage(messageText: String, trackingId: TrackingId, logData: Seq[String]): String =
-    messageText + logSeperator + logData + "trackingId: " + trackingId.value
+  trait DVLALogger {
 
-  def logMessage(messageText: String, trackingId: TrackingId): String =
-    messageText + logSeperator + "trackingId: " + trackingId.value
+    sealed trait LogMessageType
+    case object Debug extends LogMessageType
+    case object Info extends LogMessageType
+    case object Error extends LogMessageType
+//    case object Warn extends LogMessageType
+
+    def logMessage(trackingId: TrackingId, messageType: LogMessageType, messageText: String, logData: Option[Seq[String]] = None)
+                  (implicit LOG: LoggingAdapter) =
+      messageType match {
+        case Debug => LOG.debug(logMessageFormat(trackingId, messageText, logData))
+        case Info => LOG.info(logMessageFormat(trackingId, messageText, logData))
+        case Error => LOG.error(logMessageFormat(trackingId, messageText, logData))
+      }
+
+
+    private def logMessageFormat(trackingId: TrackingId, messageText: String, logData: Option[Seq[String]]): String =
+      s"""[TrackingID: ${trackingId.value}]$logSeperator$messageText ${logData.map( d => s"$logSeperator$logData" ).getOrElse("")}"""
+  }
 
 
 }
