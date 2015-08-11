@@ -10,8 +10,8 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 jacoco.settings
 
 libraryDependencies ++= {
-  val akkaV = "2.3.6"
-  val sprayV = "1.3.3"
+  val akkaV = "2.3.3"
+  val sprayV = "1.3.1"
   Seq(
     "io.spray" %% "spray-can" % sprayV,
     "io.spray" %% "spray-caching" % sprayV,
