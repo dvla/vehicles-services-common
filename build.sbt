@@ -5,25 +5,25 @@ name := "vehicles-services-common"
 organization := "dvla"
 version := "0.11-SNAPSHOT"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-scalaVersion := "2.10.5"
+scalaVersion := "2.10.4"
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 jacoco.settings
 
 libraryDependencies ++= {
-  val akkaV = "2.3.3"
-  val sprayV = "1.3.1"
+  val akkaV = "2.3.6"
+  val sprayV = "1.3.3"
   Seq(
-    "io.spray" % "spray-can" % sprayV,
-    "io.spray" % "spray-caching" % sprayV,
+    "io.spray" %% "spray-can" % sprayV,
+    "io.spray" %% "spray-caching" % sprayV,
     "com.typesafe.akka" %% "akka-slf4j" % akkaV,
-    "io.spray" % "spray-routing" % sprayV,
-    "io.spray" % "spray-testkit" % sprayV,
-    "io.spray" %% "spray-json" % "1.2.5",
+    "io.spray" %% "spray-routing" % sprayV,
+    "io.spray" %% "spray-testkit" % sprayV,
+    "io.spray" %% "spray-json" % "1.3.1",
     "com.typesafe.akka" %% "akka-actor" % akkaV,
-    "ch.qos.logback" % "logback-classic" % "1.1.0",
-    "org.scalatest" % "scalatest_2.10" % "2.0" % "test",
+    "ch.qos.logback" % "logback-classic" % "1.1.2",
+    "org.scalatest" %% "scalatest" % "2.2.2" % "test",
     "org.mockito" % "mockito-all" % "1.9.5" % "test",
-    "com.github.nscala-time" %% "nscala-time" % "0.8.0",
+    "com.github.nscala-time" %% "nscala-time" % "1.8.0",
     "com.github.tomakehurst" % "wiremock" % "1.48" % "test"
   )
 }
