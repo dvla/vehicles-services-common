@@ -13,9 +13,22 @@ import spray.routing.directives.{DebuggingDirectives, ExecutionDirectives, Loggi
 import spray.routing.{ExceptionHandler, Rejected, RejectionHandler, Route, RoutingSettings}
 import spray.util.LoggingContext
 
+/**
+ * A trait providing means to wrap a rout and to log every request and response in the common log format.
+ */
 trait AccessLogging extends ExecutionDirectives {
+  /**
+   * The logger to be used to log the CLF entries. Needs to be provided by sub classes.
+   */
   val accessLogger: LoggingAdapter
 
+  /**
+   * A directive providing the access logging functionality. Should only be used from within the withAccessLoggin(g)
+   * Gets information from the request like ip address, protocol, http method and trackingId as well as
+   * the response code from the http response and logs them.
+   * At the point this directive is executed the underlying route is fully evaluated and we have the final
+   * response after handling all the exceptions and rejections.
+   */
   private val accessLogging = DebuggingDirectives.logRequestResponse(LoggingMagnet (
     (request: HttpRequest) => (response: Any) => {
       val ipAddress = request.headers.find(_.is(`X-Forwarded-For`.name.toLowerCase)) orElse
@@ -37,6 +50,10 @@ trait AccessLogging extends ExecutionDirectives {
      }
   ))
 
+  /**
+   * Wraps a route
+   * @param inner The Route to wrap and log the request and response
+   */
   protected def withAccessLogging(inner: Route)
                                 (implicit eh: ExceptionHandler,
                                  rh: RejectionHandler,
