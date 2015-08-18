@@ -3,7 +3,7 @@ import JacocoPlugin._
 
 name := "vehicles-services-common"
 organization := "dvla"
-version := "0.11"
+version := "0.12-SNAPSHOT"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 scalaVersion := "2.10.4"
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
