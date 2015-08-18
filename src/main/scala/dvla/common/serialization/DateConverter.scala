@@ -3,7 +3,6 @@ package dvla.common.serialization
 import java.util.Locale
 import java.util.TimeZone
 import javax.xml.datatype.XMLGregorianCalendar
-
 import org.joda.time.{DateTimeZone, DateTime}
 
 object DateConverter {

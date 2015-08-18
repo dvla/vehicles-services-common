@@ -40,7 +40,6 @@ object LogFormats {
     case object Debug extends LogMessageType
     case object Info extends LogMessageType
     case object Error extends LogMessageType
-//    case object Warn extends LogMessageType
 
     def logMessage(trackingId: TrackingId, messageType: LogMessageType, messageText: String, logData: Option[Seq[String]] = None)
                   (implicit LOG: LoggingAdapter) =
@@ -52,7 +51,8 @@ object LogFormats {
 
 
     private def logMessageFormat(trackingId: TrackingId, messageText: String, logData: Option[Seq[String]]): String =
-      s"""[TrackingID: ${trackingId.value}]$logSeperator$messageText ${logData.map( d => s"$logSeperator$logData" ).getOrElse("")}"""
+      s"""[TrackingID: ${trackingId.value}]$logSeperator$messageText """ +
+        """${logData.map( d => s"$logSeperator$logData" ).getOrElse("")}"""
   }
 
 

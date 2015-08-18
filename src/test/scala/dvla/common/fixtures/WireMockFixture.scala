@@ -4,7 +4,7 @@ import java.net.ServerSocket
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig
-import com.github.tomakehurst.wiremock.http.{HttpHeaders, HttpHeader, Request, RequestListener, Response}
+import com.github.tomakehurst.wiremock.http.{HttpHeaders, Request, RequestListener, Response}
 import org.scalatest.{BeforeAndAfter, BeforeAndAfterEach, Suite, SuiteMixin}
 import scala.collection.mutable
 

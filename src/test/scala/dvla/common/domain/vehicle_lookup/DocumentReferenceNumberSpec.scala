@@ -27,6 +27,5 @@ class DocumentReferenceNumberSpec extends WordSpec with Matchers {
       val valid = DocumentReferenceNumber.validate("1" * (maxLength - 1) + "x")
       valid should equal(false)
     }
-
   }
 }

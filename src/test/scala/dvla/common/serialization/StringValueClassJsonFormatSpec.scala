@@ -1,13 +1,12 @@
 package dvla.common.serialization
 
-import spray.json.{DefaultJsonProtocol, JsonParser}
-import spray.httpx.SprayJsonSupport
 import org.scalatest.WordSpec
+import spray.httpx.SprayJsonSupport
+import spray.json.{DefaultJsonProtocol, JsonParser}
 
 class StringValueClassJsonFormatSpec extends WordSpec {
 
    "string value class JSON format" should {
-
      "treat string value classes as JSON string literals" in new Fixture {
 
        val expectedValue = "foo"

@@ -2,7 +2,6 @@ package dvla.common.serialization
 
 import java.util.TimeZone
 import javax.xml.datatype.DatatypeFactory
-
 import org.joda.time.{DateTimeZone, DateTime}
 import org.scalatest.{Matchers, WordSpec}
 import DateConverter.xmlDateToDateTime

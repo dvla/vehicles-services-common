@@ -1,6 +1,6 @@
 package dvla.common.microservice
 
-import scala.io.Source._
+import scala.io.Source.fromInputStream
 
 trait Version {
 
@@ -16,5 +16,4 @@ trait Version {
          |Runtime Java: ${prop("java.version")} ${prop("java.vendor")}
        """.stripMargin
   }
-
 }

@@ -1,25 +1,23 @@
 package dvla.common.microservice
 
 import akka.event.LoggingAdapter
+import akka.actor.ActorContext
+import dvla.common.microservice.HttpHeaders.{`X-Real-Ip`, `Tracking-Id`}
 import org.scalatest.mock.MockitoSugar.mock
 import org.scalatest.{Matchers, WordSpec}
-import spray.routing.{HttpService, ExceptionHandler, RejectionHandler, Rejection, RoutingSettings}
-import spray.testkit.ScalatestRouteTest
-import org.mockito.Mockito.{verify, verifyNoMoreInteractions}
 import org.mockito.ArgumentCaptor
+import org.mockito.Mockito.{verify, verifyNoMoreInteractions}
 import spray.http.HttpHeader
 import spray.http.HttpHeaders.{`Remote-Address`, `X-Forwarded-For`}
-import dvla.common.microservice.HttpHeaders.{`X-Real-Ip`, `Tracking-Id`}
+import spray.routing.{HttpService, ExceptionHandler, RejectionHandler, Rejection, RoutingSettings}
+import spray.testkit.ScalatestRouteTest
 import spray.util.LoggingContext
-import scala.Some
-import akka.actor.ActorContext
 
 class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with Matchers with HttpService {
   def actorRefFactory = system
   final val responseBody = "the response body"
    
   "Incoming Successful Request" should {
-
     "Get is logged along with the response" in withTestService { testService =>
       doTest(
         testService,
@@ -130,7 +128,8 @@ class RequestResponseLoggingSpec extends WordSpec with ScalatestRouteTest with M
       logMessage should startWith(s"""${ip.fold("-")(_.value)} - - [""")
 
       logMessage should endWith(
-        s"""] "GET /assets/javascripts-min/custom.js HTTP/1.1" $errorCode $bodyLength "${trackingId.fold("-")(_.value)}""""
+        s"""] "GET /assets/javascripts-min/custom.js HTTP/1.1" """ +
+          s"""$errorCode $bodyLength "${trackingId.fold("-")(_.value)}""""
       )
     }
   }

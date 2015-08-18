@@ -1,7 +1,7 @@
 package dvla.common.domain.vehicle_lookup
 
-import org.scalatest.{Matchers, WordSpec}
 import dvla.common.domain.vehicle_lookup.JsonFormats.vehicleLookupRequestFormat
+import org.scalatest.{Matchers, WordSpec}
 import spray.json.pimpString
 
 class JsonFormatsSpec extends WordSpec with Matchers {

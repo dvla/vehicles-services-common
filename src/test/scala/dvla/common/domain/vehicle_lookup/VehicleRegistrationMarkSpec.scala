@@ -24,11 +24,11 @@ class VehicleRegistrationMarkSpec extends WordSpec with Matchers {
     "99999A9", "A99A99", "A9AAA9", "A999999", "9A9999", "A99AA9", "A9999A9", "9A9AA99", "9A999A9", "9AAA99", "9A99A9",
     "99AA999", "9A9A9A", "9AAAAA", "AAAA9A9", "9A99AAA", "A9AA", "AA99A9A", "99AAA9A", "AAA99A9", "AA9A99", "A9AAA9A",
     "AA9AAA", "AA9AA9", "99999", "9A9A9", "99A99A", "99A9AA", "9999A99", "AA", "9999AA9", "A9999A", "A9A9AA", "A9A9A9",
-    "A999A", "A999AA9", "9AA9A99", "999", "A99AA", "9A99", "9A9A999", "999999", "9A9A9A9", "99AA99", "9999A9", "AA99999",
-    "AA9A9A9", "999AA9A", "99AA9AA", "99A999A", "AA999A9", "A9AA999", "AA99A9", "999AAAA", "9AAA999", "A99AA9A",
-    "A9A99", "AAAA9", "A9AA9A9", "9AA999A", "9AA9999", "9AAA9A", "9AAA9A9", "A99AAAA", "9A99A9A", "A9AA9", "9A9AAAA",
-    "AAAAA9A", "AAA99AA", "AAAAAAA", "9A999", "", "ab53ab%")
-  allInvalidVrmFormats.map(vrm => "indicate the vrm is invalid: " + vrm in {
+    "A999A", "A999AA9", "9AA9A99", "999", "A99AA", "9A99", "9A9A999", "999999", "9A9A9A9", "99AA99", "9999A9",
+    "AA99999", "AA9A9A9", "999AA9A", "99AA9AA", "99A999A", "AA999A9", "A9AA999", "AA99A9", "999AAAA", "9AAA999",
+    "A99AA9A", "A9A99", "AAAA9", "A9AA9A9", "9AA999A", "9AA9999", "9AAA9A", "9AAA9A9", "A99AAAA", "9A99A9A", "A9AA9",
+    "9A9AAAA", "AAAAA9A", "AAA99AA", "AAAAAAA", "9A999", "", "ab53ab%")
+  allInvalidVrmFormats.foreach(vrm => "indicate the vrm is invalid: " + vrm in {
     val valid = VehicleRegistrationMark.validate(vrm)
     valid should equal(false)
   })
@@ -39,7 +39,7 @@ class VehicleRegistrationMarkSpec extends WordSpec with Matchers {
   val allValidVrmFormats = Seq("A9", "A99", "A999", "A9999", "AA9", "AA99", "AA999", "AA9999", "AAA9", "AAA99", "AAA999",
     "AAA9999", "AAA9A", "AAA99A", "AAA999A", "9A", "9AA", "9AAA", "99A", "99AA", "99AAA", "999A", "999AA", "999AAA",
     "9999A", "9999AA", "A9AAA", "A99AAA", "A999AAA", "AA99AAA", "9999AAA")
-  allValidVrmFormats.map(vrm => "indicate the vrm is valid: " + vrm in {
+  allValidVrmFormats.foreach(vrm => "indicate the vrm is valid: " + vrm in {
     val valid = VehicleRegistrationMark.validate(vrm)
     valid should equal(true)
   })

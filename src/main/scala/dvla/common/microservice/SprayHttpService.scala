@@ -2,16 +2,14 @@ package dvla.common.microservice
 
 import akka.actor.{Actor, ActorLogging}
 import akka.pattern.ask
-import scala.concurrent.duration.DurationInt
-import spray.routing.HttpService
-import spray.util.pimpDuration
 import spray.can.Http
+import spray.can.server.Stats
+import scala.concurrent.duration.DurationInt
 import spray.httpx.marshalling.Marshaller
 import spray.http.ContentTypes
+import spray.routing.HttpService
 import spray.routing.RequestContext
-import spray.can.server.Stats
-
-import scala.io.Source.fromInputStream
+import spray.util.pimpDuration
 
 /**
  * SprayHttpService trait is designed to be mixed in with service implementations. It hides away the boilerplate
@@ -57,5 +55,4 @@ trait SprayHttpService extends AccessLogging with Version with Actor with ActorL
         "Max open connections  : " + stats.maxOpenConnections + '\n' +
         "Requests timed out    : " + stats.requestTimeouts + '\n'
     }
-
 }
