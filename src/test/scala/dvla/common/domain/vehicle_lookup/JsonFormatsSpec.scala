@@ -19,7 +19,7 @@ class JsonFormatsSpec extends WordSpec with Matchers {
           |"registrationNumber":"WV54XKW",
           |"userName":"testTraderName"
           |}""".stripMargin
-      val unmarshalledRequest = jsonPayload.asJson.convertTo[VehicleLookupRequest]
+      val unmarshalledRequest = jsonPayload.parseJson.convertTo[VehicleLookupRequest]
       unmarshalledRequest should equal(expectedRequest)
     }
   }
