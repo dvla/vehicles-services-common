@@ -52,7 +52,7 @@ object LogFormats {
 
     private def logMessageFormat(trackingId: TrackingId, messageText: String, logData: Option[Seq[String]]): String =
       s"""[TrackingID: ${trackingId.value}]$logSeperator$messageText """ +
-        """${logData.map( d => s"$logSeperator$logData" ).getOrElse("")}"""
+        s"""${logData.map( d => s"$logSeperator$logData" ).getOrElse("")}"""
   }
 
 
