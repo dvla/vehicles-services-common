@@ -5,8 +5,8 @@ import dvla.common.clientsidesession.TrackingId
 
 object LogFormats {
 
+  final val logSeperator = " - "
   private final val anonymousChar = "*"
-  private final val logSeperator = " - "
   private final val nullString = "null"
   final val optionNone = "none"
 
@@ -40,19 +40,21 @@ object LogFormats {
     case object Debug extends LogMessageType
     case object Info extends LogMessageType
     case object Error extends LogMessageType
+    case object Warn extends  LogMessageType
 
     def logMessage(trackingId: TrackingId, messageType: LogMessageType, messageText: String, logData: Option[Seq[String]] = None)
-                  (implicit LOG: LoggingAdapter) =
+                  (implicit log: LoggingAdapter) =
       messageType match {
-        case Debug => LOG.debug(logMessageFormat(trackingId, messageText, logData))
-        case Info => LOG.info(logMessageFormat(trackingId, messageText, logData))
-        case Error => LOG.error(logMessageFormat(trackingId, messageText, logData))
+        case Debug => log.debug(logMessageFormat(trackingId, messageText, logData))
+        case Info => log.info(logMessageFormat(trackingId, messageText, logData))
+        case Error => log.error(logMessageFormat(trackingId, messageText, logData))
+        case Warn => log.warning(logMessageFormat(trackingId, messageText, logData))
       }
 
 
     private def logMessageFormat(trackingId: TrackingId, messageText: String, logData: Option[Seq[String]]): String =
-      s"""[TrackingID: ${trackingId.value}]$logSeperator$messageText """ +
-        s"""${logData.map( d => s"$logSeperator$logData" ).getOrElse("")}"""
+      s"[TrackingID: ${trackingId.value}]$logSeperator$messageText" +
+        logData.map( d => s"$logSeperator$logData" ).getOrElse("")
   }
 
 
