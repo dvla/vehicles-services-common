@@ -18,13 +18,13 @@ libraryDependencies ++= {
     "io.spray" %% "spray-caching" % sprayV,
     "com.typesafe.akka" %% "akka-slf4j" % akkaV,
     "io.spray" %% "spray-routing" % sprayV,
-    "io.spray" %% "spray-testkit" % sprayV,
     "io.spray" %% "spray-json" % sprayV,
     "com.typesafe.akka" %% "akka-actor" % akkaV,
-    "org.scalatest" %% "scalatest" % "2.2.4" % "test",
     "com.github.nscala-time" %% "nscala-time" % "2.0.0",
-    "org.mockito" % "mockito-all" % "1.9.5" % "test",
     "ch.qos.logback" % "logback-classic" % "1.1.0",
+    "org.mockito" % "mockito-all" % "1.9.5" % "test",
+    "io.spray" %% "spray-testkit" % sprayV % "test",
+    "org.scalatest" %% "scalatest" % "2.2.4" % "test",
     "com.github.tomakehurst" % "wiremock" % "1.48" % "test"
   )
 }
