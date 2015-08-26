@@ -41,7 +41,6 @@ class LogFormatsUnitSpec extends WordSpec with Matchers with DVLALogger {
       implicit val log = mock[LoggingAdapter]
 
       logMessage(trackingId, Warn, message)
-
       verify(log).warning(expectedLogMessage)
     }
 
