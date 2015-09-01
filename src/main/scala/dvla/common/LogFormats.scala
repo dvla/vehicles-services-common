@@ -5,7 +5,7 @@ import dvla.common.clientsidesession.TrackingId
 
 object LogFormats {
 
-  final val logSeperator = " - "
+  final val logSeparator = " - "
   private final val anonymousChar = "*"
   private final val nullString = "null"
   final val optionNone = "none"
@@ -42,8 +42,10 @@ object LogFormats {
     case object Error extends LogMessageType
     case object Warn extends  LogMessageType
 
-    def logMessage(trackingId: TrackingId, messageType: LogMessageType, messageText: String, logData: Option[Seq[String]] = None)
-                  (implicit log: LoggingAdapter) =
+    def logMessage(trackingId: TrackingId, 
+                   messageType: LogMessageType, 
+                   messageText: String, 
+                   logData: Option[Seq[String]] = None)(implicit log: LoggingAdapter) =
       messageType match {
         case Debug => log.debug(logMessageFormat(trackingId, messageText, logData))
         case Info => log.info(logMessageFormat(trackingId, messageText, logData))
@@ -52,7 +54,7 @@ object LogFormats {
       }
 
     private def logMessageFormat(trackingId: TrackingId, messageText: String, logData: Option[Seq[String]]): String =
-      s"[TrackingID: ${trackingId.value}]$logSeperator$messageText" +
-        logData.map( d => s"$logSeperator$logData" ).getOrElse("")
+      s"[TrackingID: ${trackingId.value}]$logSeparator$messageText" +
+        logData.map( d => s"$logSeparator$logData" ).getOrElse("")
   }
 }
