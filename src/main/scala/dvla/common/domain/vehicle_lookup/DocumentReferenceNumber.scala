@@ -1,6 +1,8 @@
 package dvla.common.domain.vehicle_lookup
 
-class DocumentReferenceNumber private(val value: String) extends AnyVal
+class DocumentReferenceNumber private(val value: String) extends AnyVal {
+  override def toString = value
+}
 
 object DocumentReferenceNumber {
   private final val WhitelistRegexFormula = "[0-9]{11}"

@@ -43,4 +43,10 @@ class VehicleRegistrationMarkSpec extends WordSpec with Matchers {
     val valid = VehicleRegistrationMark.validate(vrm)
     valid should equal(true)
   })
+
+  "correctly display its value as a string" in {
+    val value = "A1"
+    val vrm = VehicleRegistrationMark(value)
+    vrm.toString should equal(value)
+  }
 }

@@ -28,4 +28,12 @@ class DocumentReferenceNumberSpec extends WordSpec with Matchers {
       valid should equal(false)
     }
   }
+
+  "Document reference number" should {
+    "correctly display its value as a string" in {
+      val value = "1" * maxLength
+      val drn = DocumentReferenceNumber(value)
+      drn.toString should equal(value)
+    }
+  }
 }

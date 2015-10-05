@@ -1,6 +1,8 @@
 package dvla.common.domain.vehicle_lookup
 
-class VehicleRegistrationMark private(val value: String) extends AnyVal
+class VehicleRegistrationMark private(val value: String) extends AnyVal {
+  override def toString = value
+}
 
 object VehicleRegistrationMark {
 
