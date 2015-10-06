@@ -1,7 +1,9 @@
 package dvla.common.domain.vehicle_lookup
 
+import dvla.common.LogFormats.anonymize
+
 class VehicleRegistrationMark private(val value: String) extends AnyVal {
-  override def toString = value
+  override def toString = anonymize(value)
 }
 
 object VehicleRegistrationMark {
