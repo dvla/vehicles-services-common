@@ -3,7 +3,7 @@ import JacocoPlugin._
 
 name := "vehicles-services-common"
 organization := "dvla"
-version := "0.13-SNAPSHOT"
+version := "0.13"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 scalaVersion := "2.10.5"
 crossScalaVersions := Seq("2.10.5", "2.11.7")
