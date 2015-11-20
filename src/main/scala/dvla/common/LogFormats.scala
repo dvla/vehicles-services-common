@@ -53,6 +53,11 @@ object LogFormats {
         case Warn => log.warning(logMessageFormat(trackingId, messageText, logData))
       }
 
+    def logErrorMessage(trackingId: TrackingId,
+                        messageText: String,
+                        throwable: Throwable)(implicit log: LoggingAdapter) =
+        log.error(throwable, logMessageFormat(trackingId, messageText, None))
+
     private def logMessageFormat(trackingId: TrackingId, messageText: String, logData: Option[Seq[String]]): String =
       s"[TrackingID: ${trackingId.value}]$logSeparator$messageText" +
         logData.map( d => s"$logSeparator$logData" ).getOrElse("")

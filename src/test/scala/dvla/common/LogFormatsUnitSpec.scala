@@ -7,71 +7,64 @@ import org.mockito.Mockito.verify
 import org.scalatest.{Matchers, WordSpec}
 import org.scalatest.mock.MockitoSugar.mock
 
-
 class LogFormatsUnitSpec extends WordSpec with Matchers with DVLALogger {
   val trackingId = TrackingId("test-trackingId")
   val message = "Test message to log"
   val logData = Some(List("one", "two", "three"))
   val expectedLogMessage = s"[TrackingID: test-trackingId]${LogFormats.logSeparator}$message"
   val expectedLogMessageWithlogData = s"$expectedLogMessage${LogFormats.logSeparator}Some(List(one, two, three))"
+  implicit val logMock = mock[LoggingAdapter]
+
+  "logErrorMessage" should {
+    "log correctly" in {
+      val throwable = new RuntimeException("BOOM")
+      logErrorMessage(trackingId, message, throwable)
+      verify(logMock).error(throwable, expectedLogMessage)
+    }
+  }
 
   "logMessage" should {
     "log correctly with Info" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Info, message)
-      verify(log).info(expectedLogMessage)
+      verify(logMock).info(expectedLogMessage)
     }
 
     "log correctly with Debug" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Debug, message)
-      verify(log).debug(expectedLogMessage)
+      verify(logMock).debug(expectedLogMessage)
     }
 
     "log correctly with Error" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Error, message)
-      verify(log).error(expectedLogMessage)
+      verify(logMock).error(expectedLogMessage)
     }
 
     "log correctly with Warn" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Warn, message)
-      verify(log).warning(expectedLogMessage)
+      verify(logMock).warning(expectedLogMessage)
     }
 
     "include logData when its included with Info" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Info, message, logData)
-      verify(log).info(expectedLogMessageWithlogData)
+      verify(logMock).info(expectedLogMessageWithlogData)
     }
 
     "include logData when its included with Debug" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Debug, message, logData)
-      verify(log).debug(expectedLogMessageWithlogData)
+      verify(logMock).debug(expectedLogMessageWithlogData)
     }
 
     "include logData when its included with Error" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Error, message, logData)
-      verify(log).error(expectedLogMessageWithlogData)
+      verify(logMock).error(expectedLogMessageWithlogData)
     }
 
     "include logData when its included with Warn" in {
-      implicit val log = mock[LoggingAdapter]
-
       logMessage(trackingId, Warn, message, logData)
-      verify(log).warning(expectedLogMessageWithlogData)
+      verify(logMock).warning(expectedLogMessageWithlogData)
     }
   }
+
   "Anonymize" should {
     "empty string should return null" in {
       val inputString = null
