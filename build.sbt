@@ -7,6 +7,8 @@ scalaVersion := "2.10.6"
 crossScalaVersions := Seq("2.10.6", "2.11.8")
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
+test in assembly := {}
+
 libraryDependencies ++= {
   val akkaV = "2.3.15"
   val sprayV = "1.3.2"
