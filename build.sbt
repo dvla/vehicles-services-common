@@ -1,31 +1,29 @@
-import de.johoop.jacoco4sbt._
-import JacocoPlugin._
 
 name := "vehicles-services-common"
 organization := "dvla"
 version := "0.15-SNAPSHOT"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-scalaVersion := "2.10.5"
-crossScalaVersions := Seq("2.10.5", "2.11.7")
+scalaVersion := "2.10.6"
+crossScalaVersions := Seq("2.10.6", "2.11.8")
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
-jacoco.settings
 
 libraryDependencies ++= {
-  val akkaV = "2.3.9"
+  val akkaV = "2.3.15"
   val sprayV = "1.3.2"
   Seq(
-    "io.spray" %% "spray-can" % sprayV,
-    "io.spray" %% "spray-caching" % sprayV,
+    "com.github.nscala-time" %% "nscala-time" % "2.12.0",
     "com.typesafe.akka" %% "akka-slf4j" % akkaV,
-    "io.spray" %% "spray-routing" % sprayV,
-    "io.spray" %% "spray-json" % sprayV,
     "com.typesafe.akka" %% "akka-actor" % akkaV,
-    "com.github.nscala-time" %% "nscala-time" % "2.0.0",
-    "ch.qos.logback" % "logback-classic" % "1.1.0",
-    "org.mockito" % "mockito-all" % "1.9.5" % "test",
+    "ch.qos.logback" % "logback-classic" % "1.1.7",
+    "io.spray" %% "spray-caching" % sprayV,
+    "io.spray" %% "spray-can" % sprayV,
+    "io.spray" %% "spray-json" % sprayV,
+    "io.spray" %% "spray-routing" % sprayV,
+    //test
+    "com.github.tomakehurst" % "wiremock" % "1.58" % "test",
     "io.spray" %% "spray-testkit" % sprayV % "test",
-    "org.scalatest" %% "scalatest" % "2.2.4" % "test",
-    "com.github.tomakehurst" % "wiremock" % "1.48" % "test"
+    "org.mockito" % "mockito-all" % "1.10.19" % "test",
+    "org.scalatest" %% "scalatest" % "2.2.6" % "test"
   )
 }
 
