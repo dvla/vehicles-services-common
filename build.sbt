@@ -1,7 +1,7 @@
 
 name := "vehicles-services-common"
 organization := "dvla"
-version := "0.15-SNAPSHOT"
+version := "0.15"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 scalaVersion := "2.10.6"
 crossScalaVersions := Seq("2.10.6", "2.11.8")
