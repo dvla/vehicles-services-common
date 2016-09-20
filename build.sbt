@@ -3,8 +3,7 @@ name := "vehicles-services-common"
 organization := "dvla"
 version := "0.16-SNAPSHOT"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
-scalaVersion := "2.10.6"
-crossScalaVersions := Seq("2.10.6", "2.11.8")
+scalaVersion := "2.11.8"
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 test in assembly := {}
