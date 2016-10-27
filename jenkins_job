@@ -3,7 +3,3 @@
 source ./rpm-build/jenkins_job_opts
 
 sbt clean test assembly publish
-
-rm -rf target/*.rpm
-./rpm-build/jenkins_job_make_rpm
-
