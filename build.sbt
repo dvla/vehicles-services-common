@@ -1,7 +1,7 @@
 
 name := "vehicles-services-common"
 organization := "dvla"
-version := "0.17-SNAPSHOT"
+version := "0.17"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 scalaVersion := "2.11.8"
 scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
